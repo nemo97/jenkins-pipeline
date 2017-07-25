@@ -1,5 +1,8 @@
 #!groovy
-
+properties([[$class: 'BuildDiscarderProperty',
+                strategy: [$class: 'LogRotator', numToKeepStr: '10']],
+                pipelineTriggers([cron('*/5 * * * *')]),
+                ])
 node {
     currentBuild.result = "SUCCESS"
     try {
