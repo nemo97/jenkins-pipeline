@@ -1,9 +1,8 @@
 #!groovy
-properties([[$class: 'BuildDiscarderProperty',
-                strategy: [$class: 'LogRotator', numToKeepStr: '10']],
-                pipelineTriggers([cron('*/5 * * * *')]),
-                ])
+properties([pipelineTriggers([githubPush()])])
+
 node {
+    git url: 'https://github.com/nemo97/jenkins-pipeline.git', branch: 'dev'
     currentBuild.result = "SUCCESS"
     try {
        stage('Checkout'){
