@@ -32,7 +32,7 @@ public class RestController1 {
     }
 
     @RequestMapping("/tets")
-    public String hellotes1t(){
+    public String helloteasss1t(){
         return "Hello World";
     }
 
