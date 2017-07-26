@@ -31,4 +31,9 @@ public class RestController1 {
         return "Hello World";
     }
 
+    @RequestMapping("/tets")
+    public String hellotest(){
+        return "Hello World";
+    }
+
 }
