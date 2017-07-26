@@ -10,9 +10,14 @@ node {
           checkout scm
        }
 
-       stage('Test'){
+       stage('Build'){
          sh './gradlew clean build'
        }
+
+      stage('Test'){
+        sh './gradlew check'
+      }
+
 
     }
     catch (err) {
