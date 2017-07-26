@@ -17,6 +17,10 @@ node {
         sh './gradlew check'
       }
 
+      stage('Test'){
+           sh './gradlew check'
+      }
+
 
     }
     catch (err) {
