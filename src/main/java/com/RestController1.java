@@ -33,7 +33,7 @@ public class RestController1 {
 
     @RequestMapping("/tets")
     public String hellote(){
-        return "Hello Worldsdfs";
+        return "Hello Worlsddsdfs";
     }
 
 }
