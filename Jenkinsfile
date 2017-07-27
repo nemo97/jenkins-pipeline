@@ -17,8 +17,8 @@ node {
         sh './gradlew check'
       }
 
-      stage('Test'){
-           sh './gradlew check'
+      stage('Build containers'){
+           sh './start_docker.sh'
       }
 
 
