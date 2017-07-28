@@ -4,7 +4,7 @@ MAINTAINER subhas.sing@gmail.com
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy  the current directory contents into the container at /app
 #ADD . /app
 copy ./build/libs/*jenkins-pipeline*.war /app/jenkins-pipeline.war
 
