@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 #ADD . /app
-copy ./build/libs/jenkins-pipeline-*.war /app/jenkins-pipeline.war
+copy ./build/libs/*jenkins-pipeline*.war /app/jenkins-pipeline.war
 
 # Make port 80 available to the world outside this container
 EXPOSE 8080
