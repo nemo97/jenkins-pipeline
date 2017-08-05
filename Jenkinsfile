@@ -17,6 +17,10 @@ node {
         sh './gradlew check'
       }
 
+      stage('Start docker'){
+          sh './start_docker.sh'
+      }
+
     }
     catch (err) {
 
