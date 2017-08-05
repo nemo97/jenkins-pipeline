@@ -1,62 +1,35 @@
-pipeline {
-    agent any
-    triggers {
-        pollSCM('H/15 * * * *')
+#!groovy
+properties([pipelineTriggers([githubPush()])])
+
+node {
+    git url: 'https://github.com/nemo97/jenkins-pipeline.git'
+
+    currentBuild.result = "SUCCESS"
+    try {
+       stage('Checkout'){
+          checkout scm
+       }
+
+       stage('Build'){
+         sh './gradlew clean build'
+       }
+
+      stage('Test'){
+        sh './gradlew check'
+      }
+
     }
-    stages {
+    catch (err) {
 
-          stage('Checkout'){
-            steps {
-               checkout scm
-               sh './gradlew clean'
-             }
-           }
-  /*
-           stage('build in docker'){
-                 steps {
-                    sh './gradlew clean build -Drun.tests=True'
-                  }
-           }
-   */
-
-          stage('build in docker'){
-              agent { docker 'openjdk:alpine' }
-              steps {
-                 sh './gradlew clean build -Drun.tests=True'
-
-                 junit 'build/test-results/test/*.xml'
-               }
-          }
-
-
-         stage('Example') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+        currentBuild.result = "FAILURE"
 /*
-        stage('Example Build') {
-            agent { docker 'maven:3-alpine' }
-            steps {
-                echo 'Hello, Maven'
-                sh 'mvn --version'
-            }
-        }
-        stage('Example Test') {
-            agent { docker 'openjdk:8-jre' }
-            steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
-            }
-        }
+        mail body: "project build error is here: ${env.BUILD_URL}" ,
+        from: 'xxxx@yyyy.com',
+        replyTo: 'yyyy@yyyy.com',
+        subject: 'project build failed',
+        to: 'zzzz@yyyyy.com'
 */
+        throw err
     }
-/*
-    post {
-        always {
-            junit 'build/test-results/test/*.xml'
-        }
-    }
-*/
 
 }
