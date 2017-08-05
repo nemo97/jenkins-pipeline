@@ -31,7 +31,7 @@ public class RestController1 {
         return "Hello World";
     }
 
-    @RequestMapping("/tets2")
+    @RequestMapping("/tets")
     public String hellote(){
         return "Hello Worlsddsdfs";
     }
