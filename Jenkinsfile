@@ -1,5 +1,5 @@
 #!groovy
-properties([pipelineTriggers([githubPush()])])
+//properties([pipelineTriggers([githubPush()])])
 
 node {
     git url: 'https://github.com/nemo97/jenkins-pipeline.git'
@@ -9,7 +9,6 @@ node {
        stage('Checkout'){
           checkout scm
        }
-
        stage('Build'){
          sh './gradlew clean build'
        }
